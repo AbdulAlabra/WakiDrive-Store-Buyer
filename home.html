@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style type="text/css">
+        .waki {
+            text-align: center;
+        } 
+        .jumbotron {
+            margin-top: 100px
+        }
+        </style>
+        
+    <title>Waki Store!</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+        <h1 class="display-4 waki">Waki Store</h1>
+        <h1 class="display-4">Welcome!</h1>
+
+        <p class="lead">This is a simple test of WakiDrive App.</p>
+        <hr class="my-4">
+        <p>Click on Buy Now button below to test it out and check out your phone.</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Buy Now</a>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+
+
+
+<script>
+
+$('.btn').on('click', function() {
+
+navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position);
+    var userPosition = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+    }
+$.ajax({
+      url: "/api/buyer/location",
+      type: "POST",
+      data: { position: userPosition }
+    }).then(function (response) {
+        console.log(response)
+    });
+});
+
+});
+</script>
