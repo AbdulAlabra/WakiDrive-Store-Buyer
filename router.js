@@ -18,18 +18,31 @@ module.exports = function (app) {
     });
 
     app.post('/api/buyer/location', function (req, res) {
-        console.log(req.body.position)
-        var position = req.body.position;
-        firebase.database().ref('buyers/buyer').set(
+        console.log(req.body.userInfo)
+        var userInfo = req.body.userInfo;
+        firebase.database().ref(`buyers/${userInfo.phone}`).set(
             {
-                name: 'Abdul',
-                location: {
-                    latitude: position.latitude,
-                    longitude: position.longitude
+                BuyerInfo: {
+                    name: userInfo.name,
+                    phone: userInfo.phone,
+                    HasOrder: ""
                 },
-                phone: '916-318-1728'
+                BuyerLocation: {
+                    latitude: userInfo.latitude,
+                    longitude: userInfo.longitude
+                },
+                orderInfo: {
+                    isReceived: false,
+                }
             }
-        );
+        ).then(function () {
+            firebase.database().ref(`buyers/${userInfo.phone}/BuyerInfo`).update({
+                HasOrder: false
+            });
+        });
+
+
+
         res.json({ ok: true });
     });
 }
