@@ -10,21 +10,3 @@ const config = {
 };
 
 export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
-
-
-// firebase.database().ref('stores/874947924').set(
-//     {
-//         storeName: 'Apple' ,
-//         location: {
-//             lat: '6426847624',
-//             lang: '498274749'
-//         },
-//         phone: '79537953'
-//     }
-// );
-// firebase.database().ref('stores').once('value', (data) => {
-//     console.log(data)
-// });
-// firebase.database().ref('stores').on('value', (data) => {
-//     console.log(data)
-// });
