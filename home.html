@@ -25,17 +25,17 @@
 <body>
     <div class="jumbotron">
         <h1 class="display-4 waki">Waki Store</h1>
-        <h1 class="display-4">Welcome!</h1>
+        <h1 class="display-4 waki">Welcome!</h1>
 
-        <p class="lead">This is a simple test of WakiDrive App.</p>
+        <p class="lead">This is a simple test for WakiDrive App.</p>
         <hr class="my-4">
         <p> Fill out the form and click on the <strong>"Buy Now"</strong> button below to test it out !</p>
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Name</label>
+                <label for="exampleInputEmail1">First Name</label>
                 <input class="form-control username col-md-4" id="exampleInputEmail1" aria-describedby="emailHelp"
                     placeholder="Name">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your information anyone else.</small>
+                <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone.</small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Phone Number</label>
@@ -68,7 +68,8 @@
         else if (phone === "") {
             alert("please fill out your phone number")
         }
-        else {
+        else if (name.toUpperCase() == "ARWA") {
+            alert("I love you " + name)
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position);
                 var userInfo = {
@@ -82,6 +83,27 @@
                     type: "POST",
                     data: { userInfo: userInfo }
                 }).then(function (response) {
+                    alert("Thank you Arwa. Don't be scared of me. I will do whatever to make you feel happy :) Note This response will not appear if you chnage the name that you put in the form. You Don't believe me? Try any different name than Arwa and see what response you will get?")
+                    console.log(response)
+                });
+            });
+        }
+        else {
+            alert('This is not Arwa\n Where is she? :(')
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position);
+                var userInfo = {
+                    name: name,
+                    phone: phone,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                }
+                $.ajax({
+                    url: "/api/buyer/location",
+                    type: "POST",
+                    data: { userInfo: userInfo }
+                }).then(function (response) {
+                    alert("Thank you. \nIf you see Arwa please tell her that I love her so much :(")
                     console.log(response)
                 });
             });
