@@ -33,11 +33,16 @@ module.exports = function (app) {
                 },
                 orderInfo: {
                     isReceived: false,
+                    storeName: 'Appel',
+                    storeLocation: {
+                        latitude: 38.62017699999996,
+                        longitude: -121.355203580000001
+                    }
                 }
             }
         ).then(function () {
             firebase.database().ref(`buyers/${userInfo.phone}/BuyerInfo`).update({
-                HasOrder: false
+                HasOrder: true
             });
         });
 
