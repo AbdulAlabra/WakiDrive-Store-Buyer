@@ -35,7 +35,7 @@ module.exports = function (app) {
                     isReceived: false,
                     storeName: 'Appel',
                     storeLocation: {
-                        latitude: 24.813173,
+                        latitude: 24.811173,
                         longitude: 46.68806993381629
                     }
                 }
