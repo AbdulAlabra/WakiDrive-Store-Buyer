@@ -39,13 +39,7 @@ module.exports = function (app) {
                     }
                 }
             }
-        ).then(function () {
-            firebase.database().ref(`buyers/${userInfo.phone}/BuyerInfo`).update({
-                HasOrder: true
-            });
-        });
-
-
+        )
 
         res.json({ ok: true });
     });
