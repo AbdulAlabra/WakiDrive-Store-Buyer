@@ -20,7 +20,7 @@ module.exports = function (app) {
     app.post('/api/buyer/location', function (req, res) {
         console.log(req.body.userInfo)
         var userInfo = req.body.userInfo;
-        firebase.database().ref(`buyers/${userInfo.phone}`).set(
+        firebase.database().ref(`buyers/${userInfo.phone}`).push().set(
             {
                 BuyerInfo: {
                     name: userInfo.name,
