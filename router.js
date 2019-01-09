@@ -25,6 +25,7 @@ module.exports = function (app) {
                 BuyerInfo: {
                     name: userInfo.name,
                     phone: userInfo.phone,
+                    isNewUser: false
                 },
                 BuyerLocation: {
                     latitude: userInfo.latitude,
@@ -40,8 +41,22 @@ module.exports = function (app) {
                 }
             }
         ).then(() => {
-            
-        });
+            firebase.database().ref(`buyers/${userInfo.phone}`).once('value', function(snapshot) {
+                var key = "";
+                if(snapshot.numChildren() === 1) {
+                    snapshot.forEach(function (child) {
+                        key = child.key
+                    });
+                    firebase.database().ref(`buyers/${userInfo.phone}/${key}/BuyerInfo/isNewUser`).set(true)
+                    .then(() => console.log('updtaed'))
+                    .catch(err => console.log(err));
+                }
+                else {
+                    return;
+                }
+            })
+        })
+        .catch(err => console.log(err))
 
         res.json({ ok: true });
     });
