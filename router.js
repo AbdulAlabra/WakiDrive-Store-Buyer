@@ -32,7 +32,10 @@ module.exports = function (app) {
                     longitude: userInfo.longitude
                 },
                 orderInfo: {
-                    isReceived: false,
+                    driver: {
+                        hasDriver: false,
+                        driverID: null
+                    },
                     storeName: 'Appel',
                     storeLocation: {
                         latitude: 24.800173,
