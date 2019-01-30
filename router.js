@@ -18,9 +18,15 @@ module.exports = function (app) {
     });
 
     app.post('/api/buyer/location', function (req, res) {
-        console.log(req.body.userInfo)
         var userInfo = req.body.userInfo;
-        firebase.database().ref(`buyers/${userInfo.phone}`).push().set(
+        var orderInfo = userInfo.orderInfo;
+        function getKeys(phone, key) {
+            for (var i = 0; i < userInfo.orderInfo.length; i++) {
+                var theKey = firebase.database().ref(`buyers/${phone}/${key}/orderInfo`).push(orderInfo[i]);
+            }
+        }
+       
+       firebase.database().ref(`buyers/${userInfo.phone}`).push().set(
             {
                 BuyerInfo: {
                     name: userInfo.name,
@@ -30,36 +36,38 @@ module.exports = function (app) {
                 BuyerLocation: {
                     latitude: userInfo.latitude,
                     longitude: userInfo.longitude
-                },
-                orderInfo: {
-                    driver: {
-                        hasDriver: false,
-                        driverID: null
-                    },
-                    storeName: 'Appel',
-                    storeLocation: {
-                        latitude: 24.800173,
-                        longitude: 46.68806993381629
-                    }
                 }
             }
         ).then(() => {
-            firebase.database().ref(`buyers/${userInfo.phone}`).once('value', function(snapshot) {
+            firebase.database().ref(`buyers/${userInfo.phone}`).once('value', function (snapshot) {
                 var key = "";
-                if(snapshot.numChildren() === 1) {
+                var NumberOfOrders = snapshot.numChildren();
+                console.log(NumberOfOrders);
+                if (NumberOfOrders === 1) {
                     snapshot.forEach(function (child) {
                         key = child.key
                     });
                     firebase.database().ref(`buyers/${userInfo.phone}/${key}/BuyerInfo/isNewUser`).set(true)
-                    .then(() => console.log('updtaed'))
-                    .catch(err => console.log(err));
+                        .then(() => getKeys(userInfo.phone, key))
+                        .catch(err => console.log(err));
                 }
                 else {
+                    var x = 0
+                    console.log('NumberOfOrders :' + NumberOfOrders);
+                    snapshot.forEach(function (child) {
+                        x++
+                        if (x === NumberOfOrders) {
+                        console.log("x :" + x);
+                        key = child.key
+                        console.log("order key : " + key);
+                        getKeys(userInfo.phone, key)
+                        }
+                    });
                     return;
                 }
             })
         })
-        .catch(err => console.log(err))
+            .catch(err => console.log(err))
 
         res.json({ ok: true });
     });

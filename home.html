@@ -41,8 +41,22 @@
                 <label for="exampleInputPassword1">Phone Number</label>
                 <input type="number" class="form-control phoneNumber col-md-4" id="exampleInputPassword1" placeholder="Phone">
             </div>
+
         </form>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">How Many Stores ?</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="5">Five</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary btn-lg">Buy Now!</button>
+
     </div>
 
     <!-- Optional JavaScript -->
@@ -60,8 +74,180 @@
 
 
 <script>
+    var stores = [
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Appel',
+            storeLocation: {
+                latitude: 38.648002,
+                longitude: -121.310380
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "iPhone X",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'Black'
+                    }
+                ]
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Noon',
+            storeLocation: {
+                latitude: 38.608864,
+                longitude: -121.345064
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Shirt",
+                        photo: 'url',
+                        quantity: 2,
+                        size: 'XL',
+                        color: 'Black'
+                    },
+                    {
+                        productName: "Mug",
+                        photo: 'url',
+                        quantity: 3,
+                        size: null,
+                        color: 'Gray'
+                    },
+                    {
+                        productName: "Coffee Maker ",
+                        photo: 'url',
+                        quantity: 1,
+                        size: 'small',
+                        color: 'black'
+                    },
+                    {
+                        productName: "Rice cooker",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '8 oz',
+                        color: 'Silver'
+                    },
+                    {
+                        productName: "Rice cooker",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '8 oz',
+                        color: 'Silver'
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Best Buy',
+            storeLocation: {
+                latitude: 38.639287,
+                longitude: -121.355678
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Samsung Tv",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '40 inc',
+                        color: null
+                    },
+                    {
+                        productName: "Samsung Phone",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'white'
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Google',
+            storeLocation: {
+                latitude: 38.643634,
+                longitude: -121.350525
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Google Pixle",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'white',
+                    },
+                    {
+                        productName: "Google Laptop",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '13 inc',
+                        color: 'Black',
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Samsung',
+            storeLocation: {
+                latitude: 38.633036,
+                longitude: -121.321128
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Mobile",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: null
+                    }
+                ]
+            }
+        }
+    ]
+
+    function getStores() {
+        var selectedStores = [];
+        for (var i = 0; i < $("#inputGroupSelect01").val(); i++) {
+            var thisStore = stores[i];
+            selectedStores.push(thisStore);
+        }
+        return selectedStores
+    }
 
     function checkForm(name, phone) {
+        console.log(getStores());
         if (name === "") {
             alert("please fill out your name")
         }
@@ -73,6 +259,7 @@
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position);
                 var userInfo = {
+                    orderInfo: getStores(),
                     name: name,
                     phone: phone,
                     latitude: position.coords.latitude,
@@ -93,6 +280,7 @@
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position);
                 var userInfo = {
+                    orderInfo: getStores(),
                     name: name,
                     phone: phone,
                     latitude: position.coords.latitude,
