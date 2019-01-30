@@ -18,13 +18,14 @@ module.exports = function (app) {
     });
 
     app.post('/api/buyer/location', function (req, res) {
+        console.log('hellooo');
         var userInfo = req.body.userInfo;
         var orderInfo = userInfo.orderInfo;
-        function getKeys(phone, key) {
-            for (var i = 0; i < userInfo.orderInfo.length; i++) {
-                var theKey = firebase.database().ref(`buyers/${phone}/${key}/orderInfo`).push(orderInfo[i]);
-            }
-        }
+        // function getKeys(phone, key) {
+        //     for (var i = 0; i < userInfo.orderInfo.length; i++) {
+        //         var theKey = firebase.database().ref(`buyers/${phone}/${key}/orderInfo`).push(orderInfo[i]);
+        //     }
+        // }
        
        firebase.database().ref(`buyers/${userInfo.phone}`).push().set(
             {
@@ -36,7 +37,8 @@ module.exports = function (app) {
                 BuyerLocation: {
                     latitude: userInfo.latitude,
                     longitude: userInfo.longitude
-                }
+                },
+                stores: orderInfo 
             }
         ).then(() => {
             firebase.database().ref(`buyers/${userInfo.phone}`).once('value', function (snapshot) {
@@ -48,21 +50,10 @@ module.exports = function (app) {
                         key = child.key
                     });
                     firebase.database().ref(`buyers/${userInfo.phone}/${key}/BuyerInfo/isNewUser`).set(true)
-                        .then(() => getKeys(userInfo.phone, key))
+                        .then(() => console.log('updated'))
                         .catch(err => console.log(err));
                 }
                 else {
-                    var x = 0
-                    console.log('NumberOfOrders :' + NumberOfOrders);
-                    snapshot.forEach(function (child) {
-                        x++
-                        if (x === NumberOfOrders) {
-                        console.log("x :" + x);
-                        key = child.key
-                        console.log("order key : " + key);
-                        getKeys(userInfo.phone, key)
-                        }
-                    });
                     return;
                 }
             })
