@@ -65,7 +65,10 @@ module.exports = function (app) {
                 }
             })
         })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                console.log('SOMETHING WENT WRONG');
+            })
       //------------------------------------------ this should happen when user click on the final check out ------------------------------------------ 
 
         res.json({ ok: true });
