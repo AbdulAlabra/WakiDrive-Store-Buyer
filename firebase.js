@@ -1,5 +1,6 @@
 var firebase = require("firebase");
 
+
 const config = {
     apiKey: "AIzaSyBj_T0seXFsVNX2juUALNYRJrk9ONERYZs",
     authDomain: "wakidrive-ab771.firebaseapp.com",

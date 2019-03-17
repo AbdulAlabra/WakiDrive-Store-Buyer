@@ -74,9 +74,12 @@
 
 
 <script>
+
+    // ---------------------This is how the order structure will bw---------------------------
     var stores = [
         {
             driver: {
+                //do not change
                 hasDriver: false,
                 driverID: null
             },
@@ -87,6 +90,7 @@
             },
             orderSummary: {
                 additionalInstructions: '',
+                // you can add more props if needed in the produc array 
                 products: [
                     {
                         productName: "iPhone X",
@@ -152,6 +156,7 @@
         },
         {
             driver: {
+                //do not change
                 hasDriver: false,
                 driverID: null
             },
@@ -164,6 +169,7 @@
                 additionalInstructions: '',
                 products: [
                     {
+                        // you can add more props if needed in the produc array 
                         productName: "Samsung Tv",
                         photo: 'url',
                         quantity: 1,
@@ -194,6 +200,8 @@
             orderSummary: {
                 additionalInstructions: '',
                 products: [
+                    // you can add more props if needed in the produc array 
+
                     {
                         productName: "Google Pixle",
                         photo: 'url',
@@ -236,7 +244,10 @@
             }
         }
     ]
+    // ---------------------This is how the order structure will bw---------------------------
 
+
+    //--------------------------------- not Important ---------------------------------
     function getStores() {
         var selectedStores = [];
         for (var i = 0; i < $("#inputGroupSelect01").val(); i++) {
@@ -255,7 +266,6 @@
             alert("please fill out your phone number")
         }
         else if (name.toUpperCase() == "ARWA") {
-            alert("I love you " + name)
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position);
                 var userInfo = {
@@ -270,13 +280,12 @@
                     type: "POST",
                     data: { userInfo: userInfo }
                 }).then(function (response) {
-                    alert("Thank you Arwa. Don't be scared of me. I will do whatever to make you feel happy :) Note This response will not appear if you change the name that you put in the form. You Don't believe me? Try any different name than Arwa and see what response you will get..")
+
                     console.log(response)
                 });
             });
         }
         else {
-            alert('This is not Arwa\n Where is she? :(')
             navigator.geolocation.getCurrentPosition(function (position) {
                 console.log(position);
                 var userInfo = {
@@ -291,7 +300,6 @@
                     type: "POST",
                     data: { userInfo: userInfo }
                 }).then(function (response) {
-                    alert("Thank you. \nIf you see Arwa please tell her that I love her so much :(")
                     console.log(response)
                 });
             });
@@ -301,4 +309,6 @@
     $('.btn').on('click', function () {
         checkForm($('.username').val(), $('.phoneNumber').val());
     });
+       //--------------------------------- not Important ---------------------------------
+
 </script>

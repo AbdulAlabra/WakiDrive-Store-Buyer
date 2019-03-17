@@ -1,6 +1,7 @@
 
 var firebase = require('firebase');
 var path = require('path');
+ //--------------------------------- not Important ---------------------------------
 
 module.exports = function (app) {
     app.get('/', function (req, res) {
@@ -16,17 +17,20 @@ module.exports = function (app) {
             res.json(data);
         });
     });
+    //--------------------------------- not Important ---------------------------------
+
+
+
+
+
+
+
 
     app.post('/api/buyer/location', function (req, res) {
-        console.log('hellooo');
+        
         var userInfo = req.body.userInfo;
         var orderInfo = userInfo.orderInfo;
-        // function getKeys(phone, key) {
-        //     for (var i = 0; i < userInfo.orderInfo.length; i++) {
-        //         var theKey = firebase.database().ref(`buyers/${phone}/${key}/orderInfo`).push(orderInfo[i]);
-        //     }
-        // }
-       
+      //---------------Line 24 through 59--------------------------- this should happen when user click on the final check out ------------------------------------------ 
        firebase.database().ref(`buyers/${userInfo.phone}`).push().set(
             {
                 BuyerInfo: {
@@ -38,6 +42,7 @@ module.exports = function (app) {
                     latitude: userInfo.latitude,
                     longitude: userInfo.longitude
                 },
+                //arrays of stores. each store has an array of products, and other info as you saw in home,html file
                 stores: orderInfo 
             }
         ).then(() => {
@@ -45,6 +50,7 @@ module.exports = function (app) {
                 var key = "";
                 var NumberOfOrders = snapshot.numChildren();
                 console.log(NumberOfOrders);
+
                 if (NumberOfOrders === 1) {
                     snapshot.forEach(function (child) {
                         key = child.key
@@ -53,12 +59,14 @@ module.exports = function (app) {
                         .then(() => console.log('updated'))
                         .catch(err => console.log(err));
                 }
+
                 else {
                     return;
                 }
             })
         })
             .catch(err => console.log(err))
+      //------------------------------------------ this should happen when user click on the final check out ------------------------------------------ 
 
         res.json({ ok: true });
     });
