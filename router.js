@@ -56,12 +56,12 @@ module.exports = function (app) {
                         key = child.key
                     });
                     firebase.database().ref(`buyers/${userInfo.phone}/${key}/BuyerInfo/isNewUser`).set(true)
-                        .then(() => console.log('updated'))
+                        .then(() =>  res.json({ ok: true }))
                         .catch(err => console.log(err));
                 }
 
                 else {
-                    return;
+                    return  res.json({ ok: true })
                 }
             })
         })
@@ -71,6 +71,6 @@ module.exports = function (app) {
             })
       //------------------------------------------ this should happen when user click on the final check out ------------------------------------------ 
 
-        res.json({ ok: true });
+       
     });
 }

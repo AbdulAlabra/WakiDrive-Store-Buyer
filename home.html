@@ -1,0 +1,333 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <style type="text/css">
+        .waki {
+            text-align: center;
+        }
+
+        .jumbotron {
+            margin-top: 100px
+        }
+    </style>
+
+    <title>Waki Store!</title>
+</head>
+
+<body>
+    <div class="jumbotron">
+        <h1 class="display-4 waki">Waki Store</h1>
+        <h1 class="display-4 waki">Welcome!</h1>
+
+        <p class="lead">This is a simple test for WakiDrive App.</p>
+        <hr class="my-4">
+        <p> Fill out the form and click on the <strong>"Buy Now"</strong> button below to test it out !</p>
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input class="form-control username col-md-4" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Name">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your information with anyone.</small>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Phone Number</label>
+                <input type="number" class="form-control phoneNumber col-md-4" id="exampleInputPassword1" placeholder="Phone">
+            </div>
+
+        </form>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="inputGroupSelect01">How Many Stores ?</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+                <option value="4">Four</option>
+                <option value="5">Five</option>
+            </select>
+            <select class="custom-select" id="payment">
+                <option value="visa">Visa</option>
+                <option value="cod">Cash On Delivery</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Buy Now!</button>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+
+
+
+<script>
+
+    // ---------------------This is how the order structure will bw---------------------------
+    var stores = [
+        {
+            driver: {
+                //do not change
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Appel',
+            storeLocation: {
+                latitude: 38.648002,
+                longitude: -121.310380
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                // you can add more props if needed in the produc array 
+                products: [
+                    {
+                        productName: "iPhone X",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'Black',
+                        price: 1200
+                    }
+                ]
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Noon',
+            storeLocation: {
+                latitude: 38.608864,
+                longitude: -121.345064
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Shirt",
+                        photo: 'url',
+                        quantity: 2,
+                        size: 'XL',
+                        color: 'Black',
+                        price: 10
+                    },
+                    {
+                        productName: "Mug",
+                        photo: 'url',
+                        quantity: 3,
+                        size: null,
+                        color: 'Gray',
+                        price: 12
+                    },
+                    {
+                        productName: "Coffee Maker ",
+                        photo: 'url',
+                        quantity: 1,
+                        size: 'small',
+                        color: 'black',
+                        price: 23
+                    },
+                    {
+                        productName: "Rice cooker",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '8 oz',
+                        color: 'Silver',
+                        price: 12
+                    },
+                    {
+                        productName: "Rice cooker",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '8 oz',
+                        color: 'Silver',
+                        price: 32
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                //do not change
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Best Buy',
+            storeLocation: {
+                latitude: 38.639287,
+                longitude: -121.355678
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        // you can add more props if needed in the produc array 
+                        productName: "Samsung Tv",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '40 inc',
+                        color: null,
+                        price: 10
+                    },
+                    {
+                        productName: "Samsung Phone",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'white',
+                        price : 400
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Google',
+            storeLocation: {
+                latitude: 38.643634,
+                longitude: -121.350525
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    // you can add more props if needed in the produc array 
+
+                    {
+                        productName: "Google Pixle",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: 'white',
+                        price: 500
+                    },
+                    {
+                        productName: "Google Laptop",
+                        photo: 'url',
+                        quantity: 1,
+                        size: '13 inc',
+                        color: 'Black',
+                        price: 1200
+                    }
+                ]
+
+            }
+        },
+        {
+            driver: {
+                hasDriver: false,
+                driverID: null
+            },
+            storeName: 'Samsung',
+            storeLocation: {
+                latitude: 38.633036,
+                longitude: -121.321128
+            },
+            orderSummary: {
+                additionalInstructions: '',
+                products: [
+                    {
+                        productName: "Mobile",
+                        photo: 'url',
+                        quantity: 1,
+                        size: null,
+                        color: null,
+                        price: 200
+                    }
+                ]
+            }
+        }
+    ]
+    // ---------------------This is how the order structure will bw---------------------------
+
+
+    //--------------------------------- not Important ---------------------------------
+    function getStores() {
+        var selectedStores = [];
+        for (var i = 0; i < $("#inputGroupSelect01").val(); i++) {
+            var thisStore = stores[i];
+            selectedStores.push(thisStore);
+        }
+        return selectedStores
+    }
+
+    function checkForm(name, phone) {
+
+        if (name === "") {
+            alert("please fill out your name")
+        }
+        else if (phone === "") {
+            alert("please fill out your phone number")
+        }
+        else if (name.toUpperCase() == "ARWA") {
+            navigator.geolocation.getCurrentPosition(function (position) {
+
+                var userInfo = {
+                    orderInfo: getStores(),
+                    name: name,
+                    phone: phone,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    paymentMethod : $("#payment").val()
+
+                }
+                $.ajax({
+                    url: "/api/buyer/location",
+                    type: "POST",
+                    data: { userInfo: userInfo }
+                }).then(function (response) {
+
+                    console.log(response)
+                });
+            });
+        }
+        else {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                console.log(position);
+                var userInfo = {
+                    orderInfo: getStores(),
+                    name: name,
+                    phone: phone,
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    paymentMethod : $("#payment").val()
+
+                }
+                $.ajax({
+                    url: "/api/buyer/location",
+                    type: "POST",
+                    data: { userInfo: userInfo }
+                }).then(function (response) {
+                    console.log(response)
+                });
+            });
+        }
+    }
+
+    $('.btn').on('click', function () {
+        console.log( $("#payment").val())
+        checkForm($('.username').val(), $('.phoneNumber').val());
+    });
+       //--------------------------------- not Important ---------------------------------
+
+</script>
